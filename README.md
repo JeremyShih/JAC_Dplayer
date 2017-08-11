@@ -1,4 +1,4 @@
-** Don't commit on it repo, please use pull request! **
+> ### Don't commit on this repo, please use **pull request**!
 
 # JAC_Dplayer
 > For JAC dev, Modify on **[Dplyer](http://dplayer.js.org/)**
