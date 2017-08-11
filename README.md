@@ -5,7 +5,7 @@
 
 ## Change.log
 * 2017.8/10
-    1. Not close setting box after set loop or showdanmaku setting.
-    2. Screenshot file's name is "jac_dplayer.png".
-    3. Changed sone SVG icon.
-    4. Default option.contextmenu change son text.
+    * Not close setting box after set loop or showdanmaku setting.
+    * Screenshot file's name is "jac_dplayer.png".
+    * Changed sone SVG icon.
+    * Default option.contextmenu change son text.
