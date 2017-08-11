@@ -1,0 +1,17 @@
+body {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 45px 10px;
+}
+
+.btn {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    margin: 0 0 10px;
+    cursor: pointer;
+    outline: none;
+}

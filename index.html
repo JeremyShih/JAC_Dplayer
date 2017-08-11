@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DPlayer Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/demo.css"> 
+    <link rel="stylesheet" href="css/DPlayer.css">
+    <script src="js/DPlayer.js"></script>
+</head>
+<body>
+    <h2>Demo</h2>
+    <button class="btn" onclick="switchDPlayer()">Switch Video</button>
+    <button class="btn" onclick="dp.notice('Notice!!!!!!')">Notice</button>
+    <div id="dplayer"></div>
+    <script>
+        var dp = new DPlayer({
+            element: document.getElementById('dplayer'),
+            autoplay: false,
+            theme: '#FFBF29',
+            loop: true,
+            screenshot: true,
+            hotkey: true,
+            logo: 'http://devtest.qiniudn.com/DPlayer.png',
+            video: {
+                quality: [{
+                    name: 'HD',
+                    url: 'http://devtest.qiniudn.com/若能绽放光芒.mp4?1'
+                }, {
+                    name: 'SD',
+                    url: 'http://devtest.qiniudn.com/若能绽放光芒.mp4?2'
+                }],
+                defaultQuality: 0,
+                pic: 'http://devtest.qiniudn.com/若能绽放光芒.png',
+                type: 'auto'
+            },
+            danmaku: {
+                id: '9E2E3368B56CDBB42',
+                api: 'https://api.prprpr.me/dplayer/',
+                token: 'tokendemo',
+                maximum: 3000,
+                user: 'DIYgod'
+            },
+            contextmenu: [
+                {
+                    text: 'custom contextmenu',
+                    link: 'https://github.com/DIYgod/DPlayer'
+                }
+            ]
+        });
+        function switchDPlayer() {
+            if (dp.option.danmaku.id !== '5rGf5Y2X55qu6Z2p') {
+                dp.switchVideo({
+                    url: 'http://devtest.qiniudn.com/微小微-江南皮革厂倒闭了.mp4',
+                    pic: 'http://devtest.qiniudn.com/微小微-江南皮革厂倒闭了.jpg',
+                    type: 'auto',
+                },
+                    {
+                        id: '5rGf5Y2X55qu6Z2p',
+                        api: 'https://api.prprpr.me/dplayer/',
+                        maximum: 3000,
+                        user: 'DIYgod'
+                    });
+            }
+            else {
+                dp.switchVideo({
+                    url: 'http://devtest.qiniudn.com/若能绽放光芒.mp4',
+                    pic: 'http://devtest.qiniudn.com/若能绽放光芒.png',
+                    type: 'auto',
+                },
+                    {
+                        id: '9E2E3368B56CDBB42',
+                        api: 'https://api.prprpr.me/dplayer/',
+                        maximum: 3000,
+                        user: 'DIYgod'
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
