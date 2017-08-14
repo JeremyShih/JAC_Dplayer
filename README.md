@@ -3,6 +3,12 @@
 # JAC_Dplayer
 > For JAC dev, Modify on **[Dplyer](http://dplayer.js.org/)**
 
+## Build step
+
+1. install `node.js@6.1+` and `npm`.
+2. `npm install` to install node packages.
+3. `npm run dev` to build .js file and run demo.
+
 ## Change.log
 08/10 2017
 * DPlayer.js
@@ -13,3 +19,10 @@
 * DPlayer.css
     * class->(.dplayer .dplayer-danmaku)[bottom] fix to 15%.
         * To prevent danmaku block subtitles.
+
+08/14 2017
+
+- All file
+  - Use node.js webpack to build.
+- README.md
+  - Add build step.
