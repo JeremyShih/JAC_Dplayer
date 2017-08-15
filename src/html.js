@@ -10,9 +10,7 @@ const html = {
         <div class="dplayer-mask"></div>
         <div class="dplayer-video-wrap">
             ${videos}
-            ${option.logo ? `
-            <div class="dplayer-logo"><img src="${option.logo}"></div>
-            ` : ``}
+            ${html.logo(option.logo)}
             <div class="dplayer-danmaku">
                 <div class="dplayer-danmaku-item dplayer-danmaku-item--demo"></div>
             </div>
@@ -170,10 +168,17 @@ const html = {
         <div class="dplayer-notice"></div>`;
     },
 
+    logo: (optlogo) => optlogo ? ` <div class="dplayer-logo"><img src="${optlogo}"></div> ` : ``,
+
     contextmenuList: (contextmenu) => {
         let result = '<div class="dplayer-menu">';
         for (let i = 0; i < contextmenu.length; i++) {
-            result += `<div class="dplayer-menu-item"><span class="dplayer-menu-label"><a target="_blank" href="${contextmenu[i].link}">${contextmenu[i].text}</a></span></div>`;
+            result += `
+                <div class="dplayer-menu-item">
+                    <span class="dplayer-menu-label">
+                        <a target="_blank" href="${contextmenu[i].link}">${contextmenu[i].text}</a>
+                    </span>
+                </div>`;
         }
         result += '</div>';
 

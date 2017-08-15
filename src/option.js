@@ -6,6 +6,7 @@ module.exports = (option) => {
     if (isMobile) {
         option.autoplay = false;
     }
+    option.lang.toLowerCase();
 
     // default options
     const defaultOption = {
@@ -13,7 +14,7 @@ module.exports = (option) => {
         autoplay: false,
         theme: '#b7daff',
         loop: false,
-        lang: navigator.language.indexOf('zh') !== -1 ? 'zh' : 'en',
+        lang: (navigator.language || navigator.browserLanguage).toLowerCase().indexOf('zh') !== -1 ? 'zh-cn' : 'en-us',
         screenshot: false,
         hotkey: true,
         preload: 'auto',
