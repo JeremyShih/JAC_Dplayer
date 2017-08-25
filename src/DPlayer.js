@@ -316,7 +316,6 @@ class DPlayer {
                     if (this.video.played.length) {
                         this.element.classList.add('dplayer-hide-controller');
                         closeSetting();
-                        closeComment();
                     }
                 }, 2000);
             };
@@ -554,7 +553,6 @@ class DPlayer {
             this.option.apiBackend.send(this.option.danmaku.api, danmakuData);
 
             commentInput.value = '';
-            closeComment();
             this.dan.splice(this.danIndex, 0, danmakuData);
             this.danIndex++;
             const danmaku = {
@@ -582,19 +580,6 @@ class DPlayer {
 
         let disableHide = 0;
         let commentFocusTimeout = 0;
-        const closeComment = () => {
-            if (!commentBox.classList.contains('dplayer-comment-box-open')) {
-                return;
-            }
-
-            commentBox.classList.remove('dplayer-comment-box-open');
-            mask.classList.remove('dplayer-mask-show');
-            this.element.classList.remove('dplayer-show-controller');
-
-            clearInterval(disableHide);
-            clearTimeout(commentFocusTimeout);
-            closeCommentSetting();
-        };
         const openComment = () => {
             if (commentBox.classList.contains('dplayer-comment-box-open')) {
                 return;
@@ -612,9 +597,6 @@ class DPlayer {
             }, 300);
         };
 
-        mask.addEventListener('click', () => {
-            closeComment();
-        });
         commentIcon.addEventListener('click', () => {
             openComment();
         });
