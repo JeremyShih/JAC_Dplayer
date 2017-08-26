@@ -578,8 +578,6 @@ class DPlayer {
             }
         };
 
-        let disableHide = 0;
-        let commentFocusTimeout = 0;
         const openComment = () => {
             if (commentBox.classList.contains('dplayer-comment-box-open')) {
                 return;
@@ -588,13 +586,6 @@ class DPlayer {
             commentBox.classList.add('dplayer-comment-box-open');
             mask.classList.add('dplayer-mask-show');
             this.element.classList.add('dplayer-show-controller');
-
-            disableHide = setInterval(() => {
-                clearTimeout(this.hideTime);
-            }, 1000);
-            commentFocusTimeout = setTimeout(() => {
-                commentInput.focus();
-            }, 300);
         };
 
         commentIcon.addEventListener('click', () => {
