@@ -588,21 +588,6 @@ class DPlayer {
             this.element.classList.add('dplayer-show-controller');
         };
 
-        commentIcon.addEventListener('click', () => {
-            openComment();
-        });
-        commentSettingIcon.addEventListener('click', () => {
-            toggleCommentSetting();
-        });
-
-        // comment setting box
-        this.element.getElementsByClassName('dplayer-comment-setting-color')[0].addEventListener('click', () => {
-            const sele = this.element.querySelector('input[name="dplayer-danmaku-color-${index}"]:checked+span');
-            if (sele) {
-                commentSettingIcon.getElementsByClassName('dplayer-fill')[0].style.fill = this.element.querySelector('input[name="dplayer-danmaku-color-${index}"]:checked').value;
-            }
-        });
-
         commentInput.addEventListener('click', () => {
             closeCommentSetting();
         });
