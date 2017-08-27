@@ -81,64 +81,6 @@ const html = {
                     ${svg('camera')}
                 </a>
                 ` : ``}
-                <div class="dplayer-comment">
-                    <button class="dplayer-icon dplayer-comment-icon">
-                        ${svg('comment')}
-                    </button>
-                    <div class="dplayer-comment-box">
-                        <button class="dplayer-icon dplayer-comment-setting-icon">
-                            ${svg('menu')}
-                        </button>
-                        <div class="dplayer-comment-setting-box">
-                            <div class="dplayer-comment-setting-color">
-                                <div class="dplayer-comment-setting-title">${tran('Set danmaku color')}</div>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#fff" checked>
-                                    <span style="background: #fff; border: 1px solid rgba(0,0,0,.1);"></span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#e54256">
-                                    <span style="background: #e54256"></span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#ffe133">
-                                    <span style="background: #ffe133"></span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#64DD17">
-                                    <span style="background: #64DD17"></span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#39ccff">
-                                    <span style="background: #39ccff"></span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-color-${index}" value="#D500F9">
-                                    <span style="background: #D500F9"></span>
-                                </label>
-                            </div>
-                            <div class="dplayer-comment-setting-type">
-                                <div class="dplayer-comment-setting-title">${tran('Set danmaku type')}</div>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-type-${index}" value="top">
-                                    <span>${tran('Top')}</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-type-${index}" value="right" checked>
-                                    <span>${tran('Rolling')}</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="dplayer-danmaku-type-${index}" value="bottom">
-                                    <span>${tran('Bottom')}</span>
-                                </label>
-                            </div>
-                        </div>
-                        <input class="dplayer-comment-input" type="text" placeholder="${tran('Input danmaku, hit Enter')}" maxlength="30">
-                        <button class="dplayer-icon dplayer-send-icon">
-                            ${svg('send')}
-                        </button>
-                    </div>
-                </div>
                 <div class="dplayer-setting">
                     <button class="dplayer-icon dplayer-setting-icon">
                         ${svg('setting')}
@@ -163,6 +105,61 @@ const html = {
                     </div>
                 </div>
             </div>
+            <div class="dplayer-comment">
+            <div class="dplayer-comment-box dplayer-comment-box-open dplayer-icons">
+                <button class="dplayer-icon dplayer-comment-setting-icon">
+                    ${svg('menu')}
+                </button>
+                <div class="dplayer-comment-setting-box">
+                    <div class="dplayer-comment-setting-color">
+                        <div class="dplayer-comment-setting-title">${tran('Set danmaku color')}</div>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#fff" checked>
+                            <span style="background: #fff; border: 1px solid rgba(0,0,0,.1);"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#e54256">
+                            <span style="background: #e54256"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#ffe133">
+                            <span style="background: #ffe133"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#64DD17">
+                            <span style="background: #64DD17"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#39ccff">
+                            <span style="background: #39ccff"></span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-color-${index}" value="#D500F9">
+                            <span style="background: #D500F9"></span>
+                        </label>
+                    </div>
+                    <div class="dplayer-comment-setting-type">
+                        <div class="dplayer-comment-setting-title">${tran('Set danmaku type')}</div>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-type-${index}" value="top">
+                            <span>${tran('Top')}</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-type-${index}" value="right" checked>
+                            <span>${tran('Rolling')}</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="dplayer-danmaku-type-${index}" value="bottom">
+                            <span>${tran('Bottom')}</span>
+                        </label>
+                    </div>
+                </div>
+                <input class="dplayer-comment-input" type="text" placeholder="${tran('Input danmaku, hit Enter')}" maxlength="40">
+                <button class="dplayer-icon dplayer-send-icon">
+                    ${svg('send')}
+                </button>
+            </div>
+        </div>
         </div>
         ${html.contextmenuList(option.contextmenu)}
         <div class="dplayer-notice"></div>`;
@@ -248,7 +245,7 @@ const html = {
             <div class="dplayer-setting-speed-item" data-speed="2">
                 <span class="dplayer-label">2</span>
             </div>`
-    }) 
+    })
 };
 
 module.exports = html;

@@ -1,6 +1,6 @@
 import './DPlayer.scss';
 
-import utils, {isMobile} from './utils';
+import utils, { isMobile } from './utils';
 import svg from './svg';
 import handleOption from './option';
 import i18n from './i18n';
@@ -16,7 +16,7 @@ class DPlayer {
      * @param {Object} option - See README
      * @constructor
      */
-    constructor (option) {
+    constructor(option) {
         this.option = handleOption(option);
 
         this.option.element.classList.add('dplayer');
@@ -588,6 +588,18 @@ class DPlayer {
             this.element.classList.add('dplayer-show-controller');
         };
 
+        commentSettingIcon.addEventListener('click', () => {
+            console.log("commentSettingIcon");
+            toggleCommentSetting();
+        });
+        // comment setting box
+        this.element.getElementsByClassName('dplayer-comment-setting-color')[0].addEventListener('click', () => {
+            const sele = this.element.querySelector('input[name="dplayer-danmaku-color-${index}"]:checked+span');
+            if (sele) {
+                commentSettingIcon.getElementsByClassName('dplayer-fill')[0].style.fill = this.element.querySelector('input[name="dplayer-danmaku-color-${index}"]:checked').value;
+            }
+        });
+
         commentInput.addEventListener('click', () => {
             closeCommentSetting();
         });
@@ -671,28 +683,28 @@ class DPlayer {
                 const event = e || window.event;
                 let percentage;
                 switch (event.keyCode) {
-                case 32:
-                    event.preventDefault();
-                    this.toggle();
-                    break;
-                case 37:
-                    event.preventDefault();
-                    this.seek(this.video.currentTime - 5);
-                    break;
-                case 39:
-                    event.preventDefault();
-                    this.seek(this.video.currentTime + 5);
-                    break;
-                case 38:
-                    event.preventDefault();
-                    percentage = this.video.volume + 0.1;
-                    this.volume(percentage);
-                    break;
-                case 40:
-                    event.preventDefault();
-                    percentage = this.video.volume - 0.1;
-                    this.volume(percentage);
-                    break;
+                    case 32:
+                        event.preventDefault();
+                        this.toggle();
+                        break;
+                    case 37:
+                        event.preventDefault();
+                        this.seek(this.video.currentTime - 5);
+                        break;
+                    case 39:
+                        event.preventDefault();
+                        this.seek(this.video.currentTime + 5);
+                        break;
+                    case 38:
+                        event.preventDefault();
+                        percentage = this.video.volume + 0.1;
+                        this.volume(percentage);
+                        break;
+                    case 40:
+                        event.preventDefault();
+                        percentage = this.video.volume - 0.1;
+                        this.volume(percentage);
+                        break;
                 }
             }
         };
@@ -702,12 +714,12 @@ class DPlayer {
         document.addEventListener('keydown', (e) => {              // Press ESC to quit web full screen
             const event = e || window.event;
             switch (event.keyCode) {
-            case 27:
-                if (this.element.classList.contains('dplayer-fulled')) {
-                    this.element.classList.remove('dplayer-fulled');
-                    resetAnimation();
-                }
-                break;
+                case 27:
+                    if (this.element.classList.contains('dplayer-fulled')) {
+                        this.element.classList.remove('dplayer-fulled');
+                        resetAnimation();
+                    }
+                    break;
             }
         });
 
@@ -717,9 +729,6 @@ class DPlayer {
         const menu = this.element.getElementsByClassName('dplayer-menu')[0];
         this.element.addEventListener('contextmenu', (e) => {
             const event = e || window.event;
-            event.preventDefault();
-
-            menu.classList.add('dplayer-menu-show');
 
             const clientRect = this.element.getBoundingClientRect();
             const menuLeft = event.clientX - clientRect.left;
@@ -781,10 +790,10 @@ class DPlayer {
     /**
     * Seek video
     */
-    seek (time) {
+    seek(time) {
         time = Math.max(time, 0);
         if (this.video.duration) {
-            time = Math.min(time, this.video.duration);            
+            time = Math.min(time, this.video.duration);
         }
 
         this.video.currentTime = time;
@@ -801,7 +810,7 @@ class DPlayer {
     /**
      * Play video
      */
-    play () {
+    play() {
         this.paused = false;
         if (this.video.paused) {
             this.bezel.innerHTML = svg('play');
@@ -819,7 +828,7 @@ class DPlayer {
     /**
      * Pause video
      */
-    pause () {
+    pause() {
         this.paused = true;
         this.element.classList.remove('dplayer-loading');
 
@@ -840,7 +849,7 @@ class DPlayer {
     /**
      * Set volume
      */
-    volume (percentage) {
+    volume(percentage) {
         percentage = percentage > 0 ? percentage : 0;
         percentage = percentage < 1 ? percentage : 1;
         this.updateBar('volume', percentage, 'width');
@@ -854,7 +863,7 @@ class DPlayer {
     /**
      * Toggle between play and pause
      */
-    toggle () {
+    toggle() {
         if (this.video.paused) {
             this.play();
         }
@@ -866,7 +875,7 @@ class DPlayer {
     /**
      * attach event
      */
-    on (event, callback) {
+    on(event, callback) {
         if (typeof callback === 'function') {
             this.event[event].push(callback);
         }
@@ -875,7 +884,7 @@ class DPlayer {
     /**
      * Asynchronously read danmaku from all API endpoints
      */
-    _readAllEndpoints (endpoints, finish) {
+    _readAllEndpoints(endpoints, finish) {
         const results = [];
         let readCount = 0;
         const cbk = (i) => (err, data) => {
@@ -905,7 +914,7 @@ class DPlayer {
     /**
      * Read danmaku from API
      */
-    readDanmaku () {
+    readDanmaku() {
         let apiurl;
         if (this.option.danmaku.maximum) {
             apiurl = `${this.option.danmaku.api}?id=${this.option.danmaku.id}&max=${this.option.danmaku.maximum}`;
@@ -939,7 +948,7 @@ class DPlayer {
      * color - danmaku color, default: `#fff`
      * type - danmaku type, `right` `top` `bottom`, default: `right`
      */
-    pushDanmaku (danmaku) {
+    pushDanmaku(danmaku) {
         const danContainer = this.element.getElementsByClassName('dplayer-danmaku')[0];
         const itemHeight = this.arrow ? 24 : 30;
         const danWidth = danContainer.offsetWidth;
@@ -1012,19 +1021,19 @@ class DPlayer {
 
             // adjust
             switch (danmaku[i].type) {
-            case 'right':
-                item.style.width = itemWidth + 1 + 'px';
-                item.style.top = itemHeight * getTunnel(item, danmaku[i].type, itemWidth) + 'px';
-                item.style.transform = `translateX(-${danWidth}px)`;
-                break;
-            case 'top':
-                item.style.top = itemHeight * getTunnel(item, danmaku[i].type) + 'px';
-                break;
-            case 'bottom':
-                item.style.bottom = itemHeight * getTunnel(item, danmaku[i].type) + 'px';
-                break;
-            default:
-                console.error(`Can't handled danmaku type: ${danmaku[i].type}`);
+                case 'right':
+                    item.style.width = itemWidth + 1 + 'px';
+                    item.style.top = itemHeight * getTunnel(item, danmaku[i].type, itemWidth) + 'px';
+                    item.style.transform = `translateX(-${danWidth}px)`;
+                    break;
+                case 'top':
+                    item.style.top = itemHeight * getTunnel(item, danmaku[i].type) + 'px';
+                    break;
+                case 'bottom':
+                    item.style.bottom = itemHeight * getTunnel(item, danmaku[i].type) + 'px';
+                    break;
+                default:
+                    console.error(`Can't handled danmaku type: ${danmaku[i].type}`);
             }
 
             // move
@@ -1045,7 +1054,7 @@ class DPlayer {
      * @param {Object} video - new video info
      * @param {Object} danmaku - new danmaku info
      */
-    switchVideo (video, danmaku) {
+    switchVideo(video, danmaku) {
         this.video.poster = video.pic ? video.pic : '';
         this.video.src = video.url;
         this.pause();
@@ -1067,7 +1076,7 @@ class DPlayer {
         }
     }
 
-    initVideo () {
+    initVideo() {
         // Support HTTP Live Streaming
         let enablehls;
         if (this.option.video.type === 'auto') {
@@ -1178,7 +1187,7 @@ class DPlayer {
         this.video.volume = parseInt(this.element.getElementsByClassName('dplayer-volume-bar-inner')[0].style.width) / 100;
     }
 
-    switchQuality (index) {
+    switchQuality(index) {
         if (this.qualityIndex === index || this.switchingQuality) {
             return;
         }
@@ -1209,7 +1218,7 @@ class DPlayer {
                 parent.removeChild(this.prevVideo);
                 this.video.classList.add('dplayer-video-current');
                 if (!paused) {
-                    this.video.play();                    
+                    this.video.play();
                 }
                 this.prevVideo = null;
                 this.notice(`${this.tran('Switched to')} ${this.quality.name} ${this.tran('quality')}`);
@@ -1218,7 +1227,7 @@ class DPlayer {
         });
     }
 
-    timeTipsHandler (pbar, timeTips) {
+    timeTipsHandler(pbar, timeTips) {
         // http://stackoverflow.com/questions/1480133/how-can-i-get-an-objects-absolute-position-on-the-page-in-javascript
         const cumulativeOffset = (element) => {
             let top = 0, left = 0;
@@ -1244,28 +1253,28 @@ class DPlayer {
             timeTips.innerText = utils.secondToTime(this.video.duration * (tx / pbar.offsetWidth));
             timeTips.style.left = `${(tx - 20)}px`;
             switch (e.type) {
-            case 'mouseenter':
-            case 'mouseover':
-            case 'mousemove':
-                if (this.isTipsShow) {
-                    return;
-                }
-                timeTips.classList.remove('hidden');
-                this.isTipsShow = true;
-                break;
-            case 'mouseleave':
-            case 'mouseout':
-                if (!this.isTipsShow) {
-                    return;
-                }
-                timeTips.classList.add('hidden');
-                this.isTipsShow = false;
-                break;
+                case 'mouseenter':
+                case 'mouseover':
+                case 'mousemove':
+                    if (this.isTipsShow) {
+                        return;
+                    }
+                    timeTips.classList.remove('hidden');
+                    this.isTipsShow = true;
+                    break;
+                case 'mouseleave':
+                case 'mouseout':
+                    if (!this.isTipsShow) {
+                        return;
+                    }
+                    timeTips.classList.add('hidden');
+                    this.isTipsShow = false;
+                    break;
             }
         };
     }
 
-    notice (text, time) {
+    notice(text, time) {
         const noticeEle = this.element.getElementsByClassName('dplayer-notice')[0];
         noticeEle.innerHTML = text;
         noticeEle.style.opacity = 1;
@@ -1280,7 +1289,7 @@ class DPlayer {
         }, time || 2000);
     }
 
-    destroy () {
+    destroy() {
         this.pause();
         clearTimeout(this.hideTime);
         this.video.src = '';
