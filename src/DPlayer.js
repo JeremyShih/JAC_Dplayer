@@ -589,7 +589,6 @@ class DPlayer {
         };
 
         commentSettingIcon.addEventListener('click', () => {
-            console.log("commentSettingIcon");
             toggleCommentSetting();
         });
         // comment setting box
