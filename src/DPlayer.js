@@ -728,6 +728,7 @@ class DPlayer {
         const menu = this.element.getElementsByClassName('dplayer-menu')[0];
         this.element.addEventListener('contextmenu', (e) => {
             const event = e || window.event;
+            event.preventDefault();
 
             const clientRect = this.element.getBoundingClientRect();
             const menuLeft = event.clientX - clientRect.left;
