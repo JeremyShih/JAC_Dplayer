@@ -6,8 +6,7 @@ module.exports = (option) => {
     if (isMobile) {
         option.autoplay = false;
     }
-    option.lang.toLowerCase();
-
+    
     // default options
     const defaultOption = {
         element: document.getElementsByClassName('dplayer')[0],
@@ -15,7 +14,7 @@ module.exports = (option) => {
         theme: '#b7daff',
         loop: false,
         lang: (navigator.language || navigator.browserLanguage).toLowerCase().indexOf('zh') !== -1 ? 'zh-cn' : 'en-us',
-        screenshot: false,
+        screenshot: true,
         hotkey: true,
         preload: 'auto',
         apiBackend: defaultApiBackend,
